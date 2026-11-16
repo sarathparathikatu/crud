@@ -43,7 +43,7 @@ TaskDep = Annotated[Task, Depends(get_task_or_404)]
 @app.get("/health")
 def health() -> dict[str, str]:
     """Liveness check, used by the Docker smoke test in CI."""
-    return {"status": "ok"}
+    return {"status": "broken"}
 
 
 @app.post("/tasks", response_model=TaskPublic, status_code=status.HTTP_201_CREATED)
