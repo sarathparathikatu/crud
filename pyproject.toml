@@ -1,0 +1,49 @@
+[project]
+name = "crud-app"
+version = "0.1.0"
+description = "Task Manager: a CRUD REST API built with FastAPI, SQLModel and uv"
+readme = "README.md"
+authors = [
+    { name = "Sarath", email = "sarathparathikatu@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.163.1",
+    "sqlmodel>=0.0.50",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.5",
+]
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# -ra: print a summary of skipped/failed tests at the end
+# --strict-markers: a typo in @pytest.mark.xyz becomes an error, not a silent no-op
+addopts = "-ra --strict-markers"
+
+# ---------------------------------------------------------------- coverage
+[tool.coverage.run]
+source = ["crud_app"]   # measure our package, not third-party libraries
+branch = true           # also check that both sides of every if/else ran
+
+[tool.coverage.report]
+show_missing = true     # list the line numbers that no test executed
+fail_under = 90         # the test run FAILS if coverage drops below 90%
+
+# ---------------------------------------------------------------- ruff
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# E/W = pycodestyle, F = pyflakes (real bugs), I = import sorting, B = bugbear,
+# UP = modern syntax, SIM = simplifications, N = naming conventions
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "N"]
