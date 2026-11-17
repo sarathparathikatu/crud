@@ -1,1 +1,1 @@
-To learn about github
+To learn about github,its working and its commands
